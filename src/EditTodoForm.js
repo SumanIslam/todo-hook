@@ -13,12 +13,14 @@ function EditTodoForm({ id, task, editTodo, toggle }) {
   return (
     <form onSubmit={handleSubmit} style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
       <TextField
-        style={{marginRight: '1rem'}}
+        style={{margin: '0 1rem', width: '100%'}}
         value={value} 
         onChange={onChange} 
         margin="normal"
+        fullWidth
+        autoFocus
       />
-      <Button variant="contained" color="primary">Save</Button>
+      <Button type='submit' variant="contained" color="primary">Save</Button>
     </form>
   )
 }

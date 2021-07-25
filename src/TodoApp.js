@@ -2,7 +2,7 @@ import Paper from '@material-ui/core/Paper';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import Grid from '@material-ui/core/Grid';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
 function TodoApp() {
@@ -11,7 +11,12 @@ function TodoApp() {
     {id: 2, task: 'wash car', completed: true},
     {id: 3, task: 'study', completed: false},
   ]
-  const [todos, setTodos] = useState(initialTodos);
+  const todosFromLocalStorage = JSON.parse(localStorage.getItem('todos'));
+  const [todos, setTodos] = useState(todosFromLocalStorage || initialTodos);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  },[todos])
 
   const addTodo = (newTodo) => {
     setTodos([...todos, {id: uuidv4(), task: newTodo, completed: false}])
