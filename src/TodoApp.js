@@ -16,6 +16,16 @@ function TodoApp() {
   const addTodo = (newTodo) => {
     setTodos([...todos, {id: uuidv4(), task: newTodo, completed: false}])
   }
+
+  const removeTodo = (todoId) => {
+    const filteredTodo = todos.filter(todo => todo.id !== todoId);
+    setTodos(filteredTodo)
+  }
+
+  const toggleCompletion = (todoId) => {
+    const updatedTodos = todos.map(todo => todo.id === todoId ? {...todo, completed: !todo.completed} : todo)
+    setTodos(updatedTodos);
+  }
   return (
     <Paper
       elevation={0}
@@ -29,7 +39,7 @@ function TodoApp() {
       >
         <Grid item xs={11} md={8} lg={5}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} removeTodo={removeTodo} toggleCompletion={toggleCompletion} />
         </Grid>
       </Grid>
     </Paper>
