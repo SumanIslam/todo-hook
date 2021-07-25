@@ -27,13 +27,11 @@ function TodoApp() {
         justifyContent="center"
         alignItems="center"
       >
-        <Grid item xs={11} md={8} lg={4}>
+        <Grid item xs={11} md={8} lg={5}>
           <TodoForm addTodo={addTodo} />
           <TodoList todos={todos} />
         </Grid>
       </Grid>
-      
-      
     </Paper>
   )
 }
