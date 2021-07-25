@@ -26,6 +26,10 @@ function TodoApp() {
     const updatedTodos = todos.map(todo => todo.id === todoId ? {...todo, completed: !todo.completed} : todo)
     setTodos(updatedTodos);
   }
+  const editTodo = (todoId, newTodo) => {
+    const updatedTodos = todos.map(todo => todo.id === todoId ? {...todo, task: newTodo} : todo)
+    setTodos(updatedTodos);
+  }
   return (
     <Paper
       elevation={0}
@@ -39,7 +43,12 @@ function TodoApp() {
       >
         <Grid item xs={11} md={8} lg={5}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} removeTodo={removeTodo} toggleCompletion={toggleCompletion} />
+          <TodoList 
+            todos={todos} 
+            removeTodo={removeTodo} 
+            toggleCompletion={toggleCompletion}
+            editTodo={editTodo}
+          />
         </Grid>
       </Grid>
     </Paper>
