@@ -4,6 +4,7 @@ import TodoForm from './TodoForm';
 import Grid from '@material-ui/core/Grid';
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
+import { TodosProvider } from './context/todos.context';
 
 function TodoApp() {
   const initialTodos = [
@@ -47,13 +48,15 @@ function TodoApp() {
         alignItems="center"
       >
         <Grid item xs={11} md={8} lg={5}>
-          <TodoForm addTodo={addTodo} />
-          <TodoList 
-            todos={todos} 
-            removeTodo={removeTodo} 
-            toggleCompletion={toggleCompletion}
-            editTodo={editTodo}
-          />
+          <TodosProvider>
+            <TodoForm addTodo={addTodo} />
+            <TodoList 
+              todos={todos} 
+              removeTodo={removeTodo} 
+              toggleCompletion={toggleCompletion}
+              editTodo={editTodo}
+            />
+          </TodosProvider>
         </Grid>
       </Grid>
     </Paper>
