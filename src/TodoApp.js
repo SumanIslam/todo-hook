@@ -4,12 +4,16 @@ import TodoForm from './TodoForm';
 import Grid from '@material-ui/core/Grid';
 import { useEffect } from 'react';
 import UseTodoState from './hooks/useTodosState';
-import { TodosProvider } from './context/todos.context';
 
 function TodoApp() {
-  const initialTodos = [{id: 1, task: 'go to school', completed: false}];
+  const initialTodos = JSON.parse(localStorage.getItem('todos') || '[]');
   const {todos, addTodo, removeTodo, toggleCompletion, editTodo} = UseTodoState(initialTodos);
 
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  },[todos])
+
+  
   return (
     <Paper
       elevation={0}
@@ -22,16 +26,13 @@ function TodoApp() {
         alignItems="center"
       >
         <Grid item xs={11} md={8} lg={5}>
-          <TodosProvider>
-            <TodoForm addTodo={addTodo} />
-            <TodoList 
-              todos={todos} 
-              removeTodo={removeTodo} 
-              toggleCompletion={toggleCompletion}
-              editTodo={editTodo}
-            />
-          </TodosProvider>
-          
+          <TodoForm addTodo={addTodo} />
+          <TodoList 
+            todos={todos} 
+            removeTodo={removeTodo} 
+            toggleCompletion={toggleCompletion}
+            editTodo={editTodo}
+          />
         </Grid>
       </Grid>
     </Paper>
