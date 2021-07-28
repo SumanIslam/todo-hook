@@ -2,18 +2,12 @@ import Paper from '@material-ui/core/Paper';
 import TodoList from './TodoList';
 import TodoForm from './TodoForm';
 import Grid from '@material-ui/core/Grid';
-import { useEffect } from 'react';
 import UseTodoState from './hooks/useTodosState';
 
 function TodoApp() {
-  const initialTodos = JSON.parse(localStorage.getItem('todos') || '[]');
+  const initialTodos = [{id: 1, task: 'go to school', completed: false}];
   const {todos, addTodo, removeTodo, toggleCompletion, editTodo} = UseTodoState(initialTodos);
 
-  useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  },[todos])
-
-  
   return (
     <Paper
       elevation={0}
