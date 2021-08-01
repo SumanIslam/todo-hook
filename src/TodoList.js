@@ -1,25 +1,31 @@
 import List from '@material-ui/core/List';
 import Todo from './Todo';
 import Paper from '@material-ui/core/Paper';
-function TodoList({ todos, removeTodo, toggleCompletion, editTodo }) {
-  return(
-    <Paper elevation={7}>
-      <List>
-        {todos.map(todo => (
-          <Todo
-            key={todo.id} 
-            id={todo.id} 
-            task={todo.task} 
-            completed={todo.completed} 
-            removeTodo={removeTodo} 
-            toggleCompletion={toggleCompletion}
-            editTodo={editTodo}
-          />
-      ))}
-      </List>
-      
-    </Paper>
-  )
+import { TodosContext } from './context/todos.context';
+import { useContext } from 'react';
+
+function TodoList() {
+  const { todos } = useContext(TodosContext);
+  console.log(todos);
+  if(todos.length) {
+    return(
+      <Paper elevation={7}>
+        <List>
+          {todos.map(todo => (
+            <Todo
+              key={todo.id} 
+              id={todo.id} 
+              task={todo.task}
+            />
+        ))}
+        </List>
+        
+      </Paper>
+    )
+  }
+
+  return null;
+  
 }
 
 export default TodoList;
