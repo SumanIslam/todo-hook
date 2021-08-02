@@ -12,7 +12,6 @@ function TodoForm() {
     dispatch({type: 'ADDTODO', task: value});
     reset();
   }
-  console.log('rendered');
   return(
     <Paper elevation={4} style={{margin: '1rem 0', padding: '0 1rem'}}>
       <form onSubmit={handleSubmit}>

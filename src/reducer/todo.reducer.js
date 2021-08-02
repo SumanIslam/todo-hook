@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-const reducer = (state, action) => {
+const todoReducer = (state, action) => {
   switch(action.type) {
     case 'ADDTODO': 
       return [...state, {id: uuidv4(), task: action.task, completed: false}]
@@ -17,4 +17,4 @@ const reducer = (state, action) => {
   }
 }
 
-export default reducer;
+export default todoReducer;

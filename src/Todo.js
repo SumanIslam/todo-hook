@@ -13,7 +13,6 @@ import useToggleState from './hooks/useToggleState';
 function Todo({ id, task, completed }) {
   const [isEditing, toggle] = useToggleState(false);
   const dispatch = useContext(DispatchContext);
-  console.log(task);
 
   const handleRemove = () => {
     dispatch({type: 'REMOVETODO', id})

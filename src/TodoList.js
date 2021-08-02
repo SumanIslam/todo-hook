@@ -2,11 +2,10 @@ import List from '@material-ui/core/List';
 import Todo from './Todo';
 import Paper from '@material-ui/core/Paper';
 import { TodosContext } from './context/todos.context';
-import { useContext } from 'react';
+import { useContext, memo } from 'react';
 
 function TodoList() {
   const todos = useContext(TodosContext);
-  console.log(todos);
   if(todos.length) {
     return(
       <Paper elevation={7}>
@@ -16,6 +15,7 @@ function TodoList() {
               key={todo.id}
               id={todo.id} 
               task={todo.task}
+              completed={todo.completed}
             />
           ))}
         </List>
@@ -27,4 +27,4 @@ function TodoList() {
   return null;
 }
 
-export default TodoList;
+export default memo(TodoList);
