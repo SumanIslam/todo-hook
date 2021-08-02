@@ -5,7 +5,7 @@ import { TodosContext } from './context/todos.context';
 import { useContext } from 'react';
 
 function TodoList() {
-  const { todos } = useContext(TodosContext);
+  const todos = useContext(TodosContext);
   console.log(todos);
   if(todos.length) {
     return(
@@ -13,11 +13,11 @@ function TodoList() {
         <List>
           {todos.map(todo => (
             <Todo
-              key={todo.id} 
+              key={todo.id}
               id={todo.id} 
               task={todo.task}
             />
-        ))}
+          ))}
         </List>
         
       </Paper>
@@ -25,7 +25,6 @@ function TodoList() {
   }
 
   return null;
-  
 }
 
 export default TodoList;

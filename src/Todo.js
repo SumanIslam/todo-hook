@@ -6,13 +6,13 @@ import ListItemText from '@material-ui/core/ListItemText';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import { useContext } from 'react';
-import { TodosContext } from './context/todos.context';
+import { DispatchContext } from './context/todos.context';
 import EditTodoForm from './EditTodoForm';
 import useToggleState from './hooks/useToggleState';
 
 function Todo({ id, task, completed }) {
   const [isEditing, toggle] = useToggleState(false);
-  const { dispatch } = useContext(TodosContext);
+  const dispatch = useContext(DispatchContext);
   console.log(task);
 
   const handleRemove = () => {
